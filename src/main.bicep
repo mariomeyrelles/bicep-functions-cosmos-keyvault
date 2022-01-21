@@ -6,8 +6,8 @@ param appName string = 'sampleApp'
 param location string = resourceGroup().location
 param tenantId string = tenant().tenantId
 
-@description('This is the object id of the user who will do the deployment on Azure. Can be your user id. Discover it running [az ad signed-in-user show] and get the [objectId] property.')
-param deploymentOperatorId string = '11111111-2222-3333-aaaa-bbbbbbbbbbbb' 
+@description('This is the object id of the user who will do the deployment on Azure. Can be your user id on AAD. Discover it running [az ad signed-in-user show] and get the [objectId] property.')
+param deploymentOperatorId string 
 
 // a 4-char suffix to add to the various names of azure resources to help them be unique, but still, previsible
 var appSuffix = substring(uniqueString(resourceGroup().id),0,4)
