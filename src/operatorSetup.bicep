@@ -1,5 +1,5 @@
 
-@description('principalId if the user that will be given the permissions needed to operate this deployment.')
+@description('principalId of the user that will be given the permissions needed to operate this deployment.')
 param operatorPrincipalId string
 
 @description('Application name, used to compose the name of the role definitions.')

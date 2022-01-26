@@ -1,5 +1,4 @@
 
-
 @description('Application Name - change it!')
 param appName string = 'sampleApp'
 
