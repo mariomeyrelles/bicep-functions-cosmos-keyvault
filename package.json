@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@blogster/cli": "^1.0.2",
+    "http-proxy-agent": "^5.0.0",
+    "https-proxy-agent": "^5.0.0",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "@blogster/plugin-devto": "^1.0.3",
+    "@blogster/plugin-medium": "^1.0.4"
+  }
+}

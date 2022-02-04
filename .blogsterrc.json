@@ -1,0 +1,4 @@
+{
+ "plugins": ["@blogster/plugin-devto"],
+ "include": ["**/bicep-1.md"]
+}
