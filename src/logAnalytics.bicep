@@ -5,7 +5,7 @@ var logAnalyticsWorkspaceName = 'log-${appName}'
 var appInsightsName = 'appi-${appName}'
 
 // Log Analytics workspace is required for new Application Insights deployments
-resource logAnalyticsWorspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
   location: location
   name: logAnalyticsWorkspaceName
   properties: {
@@ -28,7 +28,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   kind: 'web'
   properties: {
     Application_Type: 'web'
-    WorkspaceResourceId: logAnalyticsWorspace.id
+    WorkspaceResourceId: logAnalyticsWorkspace.id
     publicNetworkAccessForIngestion: 'Enabled'
     publicNetworkAccessForQuery: 'Enabled'
   }

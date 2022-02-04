@@ -1,5 +1,3 @@
-
-
 param keyVaultName string
 param secretName string
 param secretValue string
