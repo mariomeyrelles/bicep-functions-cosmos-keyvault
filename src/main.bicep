@@ -1,5 +1,6 @@
 
 @description('Application Name - change it!')
+@minLength(7)
 param appName string = 'sampleApp'
 
 param location string = resourceGroup().location
@@ -55,6 +56,7 @@ module cosmos 'cosmosDb.bicep' = {
 module logAnalytics 'logAnalytics.bicep' = {
   name: 'log-analytics-deployment'
   params: {
+    location: location
     appName: appName
   }
 }
@@ -63,6 +65,7 @@ module logAnalytics 'logAnalytics.bicep' = {
 module azureFunctions_api 'functionApp.bicep' = {
   name: 'functions-app-deployment-api'
   params: {
+    location: location
     appName: appName
     appInternalServiceName: 'api'
     appNameSuffix: appSuffix
