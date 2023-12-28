@@ -7,7 +7,7 @@ param keyVaultName string
 
 
 param tags object = {
-  'deploymentGroup': 'cosmosdb'
+  deploymentGroup: 'cosmosdb'
 }
 
 resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
@@ -40,7 +40,8 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
 
 
 resource cosmosDb_database 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2021-06-15' = {
-  name: '${cosmosAccount.name}/${cosmosDbName}'
+  parent: cosmosAccount
+  name: cosmosDbName
   tags: tags
   properties: {
     resource: {
@@ -50,11 +51,9 @@ resource cosmosDb_database 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2
 }
 
 resource container_leases 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2021-06-15' = {
-  name: '${cosmosDb_database.name}/leases'
+  parent: cosmosDb_database
+  name: 'leases'
   tags: tags
-  dependsOn: [
-    cosmosAccount
-  ]
   properties: {
     resource: {
       id: 'leases'
@@ -69,11 +68,9 @@ resource container_leases 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/co
 
 
 resource container_employees 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2021-06-15' = {
-  name: '${cosmosDb_database.name}/Employees'
+  parent: cosmosDb_database
+  name: 'Employees'
   tags: tags
-  dependsOn: [
-    cosmosAccount
-  ]
   properties: {
     resource: {
       id: 'Employees'

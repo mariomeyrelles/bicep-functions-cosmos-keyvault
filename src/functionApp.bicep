@@ -43,7 +43,7 @@ var appTags = {
 
 
 // Storage Account - I am using 1 storage account for each function. It would be potentially shared across many function apps.
-resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: storageAccountName
   location: location
   sku: {
@@ -72,7 +72,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
 }
 
 // Blob Services for Storage Account
-resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2019-06-01' = {
+resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2021-04-01' = {
   parent: storageAccount
 
   name: 'default'
@@ -103,7 +103,7 @@ module setStorageAccountSecret 'setSecret.bicep' = {
 
 
 // App Service
-resource appService 'Microsoft.Web/serverfarms@2020-12-01' = {
+resource appService 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: appServiceName
   location: location
   kind: 'functionapp'
@@ -124,7 +124,7 @@ resource appService 'Microsoft.Web/serverfarms@2020-12-01' = {
 
 
 // Function App
-resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
+resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
   name: functionAppName
   location: location
   identity: {
@@ -174,7 +174,7 @@ resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~3'
+          value: '~4'
         }
         {
           name: 'CosmosDbConnectionString' 
@@ -182,6 +182,7 @@ resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
         }
       ]
       use32BitWorkerProcess: true
+      minTlsVersion: '1.2'
     }
     scmSiteAlsoStopped: false
     clientAffinityEnabled: false
